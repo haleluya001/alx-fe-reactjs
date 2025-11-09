@@ -4,7 +4,7 @@ import UserProfile from './components/UserProfile';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import Counter from './components/Counter';
-import UserContext from './UserContext'; // import the context
+import UserContext from './UserContext';
 
 function App() {
   const userDataList = [
@@ -18,18 +18,8 @@ function App() {
         <Header />
 
         <main style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-          {/* Map through the userDataList from context */}
-          {userDataList.map((user, index) => (
-            <UserProfile 
-              key={index}
-              name={user.name}
-              age={user.age}
-              bio={user.bio}
-            />
-          ))}
-
+          <UserProfile />
           <MainContent />
-
           <Counter />
         </main>
 
