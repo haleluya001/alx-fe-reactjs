@@ -1,75 +1,50 @@
-import React, { useState } from 'react';
-import { fetchAdvancedUsers } from '../services/githubService';
+import React, { useState } from "react";
+import { fetchUserData } from "../services/githubService"; // ✅ MUST be here
 
 const Search = () => {
-  const [username, setUsername] = useState('');
-  const [location, setLocation] = useState('');
-  const [minRepos, setMinRepos] = useState('');
-  const [users, setUsers] = useState([]);
+  const [username, setUsername] = useState("");
+  const [results, setResults] = useState(null);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setUsers([]);
+    setError("");
+    setResults(null);
 
-    const results = await fetchAdvancedUsers({ username, location, minRepos });
-
-    if (results.length) {
-      setUsers(results);
-    } else {
+    try {
+      // ✅ MUST call fetchUserData
+      const data = await fetchUserData(username);
+      setResults(data);
+    } catch (err) {
       setError("Looks like we cant find the user");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 p-4">
-      <form onSubmit={handleSearch} className="flex flex-col gap-3">
+    <div>
+      <form onSubmit={handleSearch}>
         <input
           type="text"
-          placeholder="Username"
-          value={username}
+          placeholder="Search GitHub user..."
           onChange={(e) => setUsername(e.target.value)}
-          className="border p-2 rounded"
         />
-        <input
-          type="text"
-          placeholder="Location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          className="border p-2 rounded"
-        />
-        <input
-          type="number"
-          placeholder="Minimum repositories"
-          value={minRepos}
-          onChange={(e) => setMinRepos(e.target.value)}
-          className="border p-2 rounded"
-        />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-          Search
-        </button>
+        <button type="submit">Search</button>
       </form>
 
-      <div className="mt-6">
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        {users.map((user) => (
-          <div key={user.id} className="border p-4 rounded mb-3 flex items-center gap-4">
-            <img src={user.avatar_url} alt={user.login} className="w-16 rounded-full" />
-            <div>
-              <h3 className="font-bold">{user.login}</h3>
-              <a href={user.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500">
-                View Profile
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+
+      {results && (
+        <div>
+          <img src={results.avatar_url} alt="avatar" width="100" />
+          <h2>{results.login}</h2>
+          <a href={results.html_url} target="_blank">View Profile</a>
+        </div>
+      )}
     </div>
   );
 };
