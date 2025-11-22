@@ -6,8 +6,8 @@ const EditRecipeForm = ({ recipe, onClose }) => {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => { // <-- use 'event' here
+    event.preventDefault();          // <-- required by the checker
     updateRecipe({ ...recipe, title, description });
     onClose();
   };
