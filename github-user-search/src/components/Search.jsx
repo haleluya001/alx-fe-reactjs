@@ -14,7 +14,6 @@ const Search = () => {
     setResults(null);
 
     try {
-      // ✅ MUST call fetchUserData
       const data = await fetchUserData(username);
       setResults(data);
     } catch (err) {
