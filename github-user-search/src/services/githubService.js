@@ -1,34 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
-/**
- * Fetch a single user by username (public API)
- */
-export const fetchUserData = async (username) => {
-  try {
-    const response = await axios.get(`https://api.github.com/users/${username}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching GitHub user:', error);
-    return null;
-  }
-};
+export const fetchUserData = async (query) => {
+  const response = await axios.get(
+    `https://api.github.com/search/users?q=${query}`
+  );
 
-/**
- * Fetch multiple users based on advanced search criteria
- * queryParams = { username: string, location: string, minRepos: number }
- */
-export const fetchAdvancedUsers = async ({ username, location, minRepos }) => {
-  try {
-    let query = '';
+  const users = response.data.items;
 
-    if (username) query += `${username} in:login `;
-    if (location) query += `location:${location} `;
-    if (minRepos) query += `repos:>=${minRepos} `;
+  // Fetch extra details like location
+  const detailedUsers = await Promise.all(
+    users.map(async (user) => {
+      const userDetails = await axios.get(user.url);
+      return { ...user, ...userDetails.data };
+    })
+  );
 
-    const response = await axios.get(`https://api.github.com/search/users?q=${encodeURIComponent(query)}&per_page=10`);
-    return response.data.items; // Array of user results
-  } catch (error) {
-    console.error('Error fetching advanced users:', error);
-    return [];
-  }
+  return detailedUsers;
 };
