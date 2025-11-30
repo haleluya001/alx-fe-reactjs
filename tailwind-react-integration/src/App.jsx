@@ -1,9 +1,9 @@
-import UserProfile from "./components/UserProfile"; 
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
-    <div>
-      <UserProfile /> 
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <UserProfile />
     </div>
   );
 }
