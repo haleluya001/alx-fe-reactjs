@@ -6,33 +6,42 @@ const AddRecipeForm = () => {
   const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState("");
 
+  const validate = () => {
+    if (!title || !ingredients || !steps) {
+      return "Please fill in all fields.";
+    }
+
+    const ingredientsList = ingredients
+      .split("\n")
+      .filter((item) => item.trim() !== "");
+
+    if (ingredientsList.length < 2) {
+      return "Please enter at least two ingredients (each on a new line).";
+    }
+
+    return ""; // No errors
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Basic validation
-    if (!title || !ingredients || !steps) {
-      setErrors("Please fill in all fields.");
-      return;
-    }
-
-    const ingredientsList = ingredients.split("\n").filter((item) => item.trim() !== "");
-    if (ingredientsList.length < 2) {
-      setErrors("Please enter at least two ingredients (each on a new line).");
+    const validationError = validate(); 
+    if (validationError) {
+      setErrors(validationError);
       return;
     }
 
     setErrors("");
 
-    // Build recipe object (ready to save in backend later)
     const newRecipe = {
       title,
-      ingredients: ingredientsList,
+      ingredients: ingredients.split("\n"),
       steps: steps.split("\n")
     };
 
     console.log("New Recipe Submitted:", newRecipe);
 
-    // Reset Form
+    // Reset form
     setTitle("");
     setIngredients("");
     setSteps("");
@@ -50,7 +59,6 @@ const AddRecipeForm = () => {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-
         {/* Title */}
         <div>
           <label className="block text-lg font-medium mb-1">Recipe Title</label>
@@ -84,14 +92,14 @@ const AddRecipeForm = () => {
           </label>
           <textarea
             rows="6"
-            placeholder="Example:\nMix all ingredients.\nBake for 20 minutes."
+            placeholder="Example:\nMix ingredients.\nBake 20 minutes."
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
             className="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
           ></textarea>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition"
