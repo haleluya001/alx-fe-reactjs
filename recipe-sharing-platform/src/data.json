@@ -3,18 +3,66 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/300x200"
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta or bacon",
+      "2 large eggs",
+      "50g grated Parmesan cheese",
+      "1 tbsp olive oil",
+      "Salt and black pepper to taste"
+    ],
+    "instructions": [
+      "Cook the spaghetti in salted boiling water until al dente.",
+      "Heat olive oil in a pan and cook the pancetta until crispy.",
+      "In a bowl, whisk together eggs and Parmesan cheese.",
+      "Drain the pasta and combine immediately with the pancetta.",
+      "Remove from heat and quickly mix in the egg-cheese mixture.",
+      "Season with black pepper and serve warm."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/300x200"
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": [
+      "500g chicken breast, cubed",
+      "1/2 cup yogurt",
+      "2 tbsp tikka masala spice mix",
+      "1 onion, chopped",
+      "2 cups tomato puree",
+      "1/2 cup heavy cream",
+      "2 tbsp butter",
+      "Salt and pepper to taste"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and tikka masala spice for at least 1 hour.",
+      "Grill or pan-fry the chicken until slightly charred.",
+      "In a pan, sauté onions in butter until golden.",
+      "Add tomato puree and simmer for 10 minutes.",
+      "Add grilled chicken and cook for an additional 10 minutes.",
+      "Stir in heavy cream, season with salt and pepper, and serve warm."
+    ]
   },
   {
     "id": 3,
     "title": "Avocado Toast",
     "summary": "Fresh avocado on toasted bread, topped with salt, pepper, and optional chili flakes.",
-    "image": "https://via.placeholder.com/300x200"
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": [
+      "2 slices of bread",
+      "1 ripe avocado",
+      "1 tsp lemon juice",
+      "Salt and pepper to taste",
+      "Chili flakes (optional)"
+    ],
+    "instructions": [
+      "Toast the bread slices until golden.",
+      "Mash the avocado in a bowl and mix with lemon juice.",
+      "Spread the avocado mixture evenly on the toasted bread.",
+      "Season with salt, pepper, and optional chili flakes.",
+      "Serve immediately."
+    ]
   }
 ]
