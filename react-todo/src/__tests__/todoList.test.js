@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import TodoList from '../components/TodoList';
 
 describe('TodoList Component', () => {
@@ -11,11 +10,9 @@ describe('TodoList Component', () => {
 
   test('adds a new todo', () => {
     render(<TodoList />);
-    fireEvent.change(screen.getByPlaceholderText('Add todo'), {
-      target: { value: 'New Todo' },
-    });
+    fireEvent.change(screen.getByPlaceholderText('Add new todo'), { target: { value: 'New Task' } });
     fireEvent.click(screen.getByText('Add'));
-    expect(screen.getByText('New Todo')).toBeInTheDocument();
+    expect(screen.getByText('New Task')).toBeInTheDocument();
   });
 
   test('toggles todo completion', () => {
