@@ -1,5 +1,5 @@
 import RegistrationForm from './components/RegistrationForm';
-import FormikForm from './components/FormikForm';
+import FormikForm from './components/formikForm';
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <h1>React Form Handling Example</h1>
       <RegistrationForm />
       <hr />
-      <FormikForm />
+      <formikForm />
     </div>
   );
 }
