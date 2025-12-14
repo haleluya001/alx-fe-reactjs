@@ -30,7 +30,7 @@ const TodoList = () => {
     <div>
       <h1>Todo List</h1>
       <input
-        placeholder="Add todo"
+        placeholder="Add new todo"
         value={newTodo}
         onChange={(e) => setNewTodo(e.target.value)}
       />
