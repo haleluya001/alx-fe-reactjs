@@ -26,15 +26,17 @@ const RegistrationForm = () => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Form Data Submitted:', formData);
-      // Here you can call your API endpoint
+      console.log('Controlled Form Submitted:', formData);
+      // simulate API call here
     } else {
       setErrors(validationErrors);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: '400px', margin: '0 auto' }}>
+    <form onSubmit={handleSubmit}>
+      <h2>Controlled Registration Form</h2>
+
       <div>
         <label>Username:</label>
         <input

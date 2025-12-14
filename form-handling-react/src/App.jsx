@@ -4,7 +4,7 @@ import FormikForm from './components/FormikForm';
 function App() {
   return (
     <div>
-      <h1>React Form Handling</h1>
+      <h1>React Form Handling Example</h1>
       <RegistrationForm />
       <hr />
       <FormikForm />
