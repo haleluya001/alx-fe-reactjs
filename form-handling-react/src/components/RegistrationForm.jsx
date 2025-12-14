@@ -27,7 +27,7 @@ const RegistrationForm = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
       console.log('Controlled Form Submitted:', formData);
-      // simulate API call here
+      // You can call a mock API here
     } else {
       setErrors(validationErrors);
     }
